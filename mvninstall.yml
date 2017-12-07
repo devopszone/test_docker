@@ -1,0 +1,25 @@
+---
+- hosts: local
+  become: yes
+  connection: local
+  tasks: 
+# - name: "Download Apache Maven"
+#   get_url:
+#      url:  http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
+#      dest: /tmp/apache-maven-3.0.5-bin.tar.gz
+#  - name: "Untar Maven" 
+#    chdir :/tmp 
+#    creates: /opt/apache-maven-3.0.5 tar -zxf apache-maven-3.0.5-bin.tar.gz -C /opt
+#  - name: "Update path for maven use"
+#    export PATH=/opt/apache-maven-3.0.5/bin:$PATH
+ 
+
+
+
+
+  - name: install maven (and other packages if needed)
+    become: yes
+    apt: pkg={{ item }} 
+    state: latest update_cache= yes 
+    cache_valid_time= 3600
+    with_items= maven

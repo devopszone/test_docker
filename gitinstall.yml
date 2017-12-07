@@ -1,0 +1,12 @@
+---  
+- hosts: local,remote
+  become: yes
+  connection: local
+  tasks:
+  - name: "install git"
+    yum:
+      name: {{ package_name }}
+      state: present
+
+
+

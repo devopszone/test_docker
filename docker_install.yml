@@ -1,0 +1,46 @@
+---
+- hosts: local
+  become: yes
+  connection: local
+  tasks:
+  - name: "Install Git"
+    yum:
+      name: git
+      state: present
+  - name: "install unzip"
+    yum: 
+      name: unzip
+      state: present
+  - name: "Download docker script"
+    command: curl -fsSL get.docker.com -o get-docker.sh
+    args:
+      chdir: /home/
+  - name: "run docker script"
+    script: get-docker.sh
+  - name: "start Docker"
+    service:
+      name: docker
+      state: started
+  - name: "install pip"
+    yum:
+      name: python-pip
+      state: present
+  - name: "install docker-compose"
+    command: pip install docker-compose
+  - name: "clone the file"
+    command: git pull https://github.com/devopszone/test_docker.git
+    args:
+      chdir: /home/ansible/test_docker/
+  - name: "install unzip"
+    unarchive:
+      src: /home/ansible/test_docker/Telegraf-Grafana-InfluxDB.zip
+      dest: /home/ansible/test_docker/
+  - name: "docker build"
+    command: docker-compose build
+    args:
+      chdir: /home/ansible/test_docker/Telegraf-Grafana-InfluxDB
+  - name: "docker up"
+    command: docker-compose up -d
+    args:
+      chdir: /home/ansible/test_docker/Telegraf-Grafana-InfluxDB/
+

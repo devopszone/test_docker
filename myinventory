@@ -1,0 +1,7 @@
+[local]
+localhost
+
+[local:vars]
+
+filepath=/home/ansible/testlineinfile
+package_name= git

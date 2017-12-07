@@ -1,0 +1,15 @@
+---
+- hosts: local
+  become: true
+  connection: local
+#  environment:
+#    http_proxy: http://HCLTECH\\sravankumar-n:sra1%40hcl@campus-proxy:80
+#    https_proxy: http://HCLTECH\\sravankumar-n:sra1%40hcl@campus-proxy:80
+#    m2_home: /home/ansible/
+  tasks:
+  - name: "install git"
+    yum: 
+      name: git
+      state: present 
+      
+ 

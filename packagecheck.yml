@@ -1,0 +1,12 @@
+---
+- hosts: local
+  become: true
+  tasks:
+  - name: "check the package is available or not"
+    stat:
+      path: /usr/bin/git
+    register: state
+  - assert:
+      that:
+        - state.stat.exists 
+
