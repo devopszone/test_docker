@@ -1,0 +1,16 @@
+---
+# tasks file for roles/docker
+- name: "Download docker script"
+  command: curl -fsSL get.docker.com -o get-docker.sh
+  args:
+    chdir: /home/
+- name: "run docker script"
+  script: get-docker.sh
+- name:
+  service: name=docker state=started
+- name: "install pip"
+  yum: name=python-pip state=present
+- name: "install docker-compose"
+  command: pip install docker-compose
+
+

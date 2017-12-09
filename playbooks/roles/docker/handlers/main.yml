@@ -1,0 +1,8 @@
+---
+# handlers file for roles/docker
+- name: "start Docker"
+  service:
+    name: docker
+    state: started
+
+

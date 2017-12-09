@@ -1,0 +1,8 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  roles:
+    - unzip
+    - git
+    - docker
